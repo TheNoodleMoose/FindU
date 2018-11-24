@@ -1,0 +1,32 @@
+
+body {
+    color: rgb(246, 246, 246);
+    background: rgba(0, 119, 255, 0.52);
+}
+
+.map {
+    height: 600px;
+    background-image: url('/assets/images/pexels-photo-346696.jpeg');
+    background: rgba(96, 164, 241, 0.6);
+    background-blend-mode: multiply;
+    border-radius: 10px;
+}
+
+.hide {
+    display: none;
+}
+
+.places-list, .friends-list {
+    background-color: rgba(0, 119, 255, 0.3);
+}
+
+#map {
+    width: 600px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+#place-list, #friends-list {
+    background: rgba(0, 119, 255, 0.3);
+    border-radius: 10px;
+}
