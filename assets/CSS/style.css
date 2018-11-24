@@ -31,13 +31,8 @@ body {
     border-radius: 10px;
 }
 
-@media (max-width: 390) {
-
+@media screen and (min-width: 768px) and (max-width: 900px) {
     body {
-        color: black;
+        background: black;
     }
-    #map {
-        height: 200px;
-    }
-    
 }
