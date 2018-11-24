@@ -8,6 +8,7 @@ body {
     height: auto;
     margin: 0 auto;
     padding-top: 10px;
+    padding-right: 30px;
     background: #67AFCB;
     border-radius: 10px;
 }
@@ -27,7 +28,7 @@ body {
 #friends-list {
     background: rgba(26, 62, 76, 0.616);
     border-radius: 10px;
-    
+    margin-bottom: 10px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 900px) {
