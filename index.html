@@ -13,14 +13,13 @@
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="assets/CSS/style.css">
-    <script defer src="assets/JS/main.js"></script>
 </head>
 
 <body>
-    <div class="container map" style="background-image: url('assets/images/pexels-photo-346696.jpeg')">
-        <div class="row">
+    <div class="container map-box" style="background-image: url('assets/images/pexels-photo-346696.jpeg'); background-color: rgba(96, 164, 241, 0.6); background-blend-mode: multiply;">
+        <div class="row map-row">
             <div class="col-lg-4">
-                <h1 class="nav-brand">FindUrFrnds</h1>
+                <h1 class="nav-brand">FindYourFriends</h1>
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <p>Find Your Friends, Anywhere, Anytime</p>
@@ -31,12 +30,12 @@
             <div class="col-lg-4 ml-auto">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form>
+                        <form class="m-1">
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-6 col-md-6">
                                     <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-6 col-md-6">
                                     <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
                                 </div>
                             </div>
@@ -62,20 +61,17 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-12">
                 <div class="row">
-                    <div id="place-list" class="col-lg-2">
-                        <h4 class="text-center">Places</h4>
-                    </div>
-                    <div class="col-lg-8">
+                    <div class="col-8">
                         <h4 class="text-center">Map</h4>
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-12">
                                 <div id='map'></div>
                             </div>
                         </div>
                     </div>
-                    <div id="friends-list" class="col-lg-2">
+                    <div id="friends-list" class="col-4">
                         <h4 class="text-center">Friends List</h4>
                     </div>
                 </div>
@@ -84,9 +80,10 @@
 
     </div>
 
-
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="assets/JS/main.js"></script>
 </body>
 
 </html>
