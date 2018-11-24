@@ -1,14 +1,14 @@
 
 body {
-    color: rgb(246, 246, 246);
-    background: rgba(0, 119, 255, 0.52);
+    color: #092834;
+    background: #1A3E4C;
 }
 
-.map {
+.map-box {
     height: auto;
-    background-image: url('/assets/images/pexels-photo-346696.jpeg');
-    background: rgba(96, 164, 241, 0.6);
-    background-blend-mode: multiply;
+    margin: 0 auto;
+    padding-top: 10px;
+    background: #67AFCB;
     border-radius: 10px;
 }
 
@@ -16,19 +16,18 @@ body {
     display: none;
 }
 
-.places-list, .friends-list {
-    background-color: rgba(0, 119, 255, 0.3);
-}
-
 #map {
+    border-radius: 10px;
     width: auto;
     height: 400px;
     margin: 0 auto;
+    margin-bottom: 10px;
 }
 
-#place-list, #friends-list {
-    background: rgba(0, 119, 255, 0.3);
+#friends-list {
+    background: rgba(26, 62, 76, 0.616);
     border-radius: 10px;
+    
 }
 
 @media screen and (min-width: 768px) and (max-width: 900px) {
