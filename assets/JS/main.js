@@ -84,14 +84,6 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
                 latitude: latitude
             });
 
-            // function locationUpdate(uid, longitude, latitude) {
-            //     var updates = {};
-            //     updates['users/' + uid] = longitude;
-            //     updates['users/' + uid] = latitude;
-
-            //     return firebase.database().ref('users/' + uid).update(updates);
-            // }
-            // locationUpdate();
 
             mapboxgl.accessToken = 'pk.eyJ1IjoidGhlbm9vZGxlbW9vc2UiLCJhIjoiY2pvdXM4c3ZrMWZnYTNrbW9ic2hmdjV6ZyJ9.-A735y9fU1TdsJ993uIKLA';
             var map = new mapboxgl.Map({
