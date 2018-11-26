@@ -44,14 +44,13 @@ $("#btnSignUp").on("click", function(event) {
 $("#btnLogout").on("click", function(event) {
     event.preventDefault();
     firebase.auth().signOut();
+    document.location.href = 'index.html';
 })
 
 firebase.auth().onAuthStateChanged(firebaseUser => {
     if(firebaseUser) {
         console.log(firebaseUser)
         btnLogout.classList.remove('hide');
-        btnLogin.classList.add('hide');
-        btnSignUp.classList.add('hide');
 
         navigator.geolocation.getCurrentPosition(function (position) {
             console.log(position.coords.longitude, position.coords.latitude);
@@ -96,8 +95,6 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         });
     } else {
         console.log('not logged in');
-        btnLogin.classList.remove('hide');
-        btnSignUp.classList.remove('hide');
         btnLogout.classList.add('hide');
     }
 });

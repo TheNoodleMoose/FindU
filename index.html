@@ -1,81 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Find Your Friend</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
-    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
-    <link rel="stylesheet" href="assets/CSS/style.css">
+    <title>JD&C | Sign In</title>
 </head>
 
+<script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAmqTyfDNVyzz6VG-WlM51ffi7jpB4hqH4",
+    authDomain: "jd-c-project.firebaseapp.com",
+    databaseURL: "https://jd-c-project.firebaseio.com",
+    projectId: "jd-c-project",
+    storageBucket: "jd-c-project.appspot.com",
+    messagingSenderId: "761811179231"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<script src="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.css" />
+<script type="text/javascript">
+  // FirebaseUI config.
+  var uiConfig = {
+    signInSuccessUrl: 'signedIn.html',
+    signInOptions: [
+      // Leave the lines as is for the providers you want to offer your users.
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.EmailAuthProvider.PROVIDER_ID,
+      
+    ],
+    // tosUrl and privacyPolicyUrl accept either url string or a callback
+    // function.
+    // Terms of service url/callback.
+    tosUrl: '<your-tos-url>',
+    // Privacy policy url/callback.
+    privacyPolicyUrl: function() {
+      window.location.assign('<your-privacy-policy-url>');
+    }
+  };
+
+  // Initialize the FirebaseUI Widget using Firebase.
+  var ui = new firebaseui.auth.AuthUI(firebase.auth());
+  // The start method will wait until the DOM is loaded.
+  ui.start('#firebaseui-auth-container', uiConfig);
+</script>
+
 <body>
-    <div class="container map-box">
-        <div class="row map-row">
-            <div class="col-4">
-                <h4 class="nav-brand">FindU</h4>
-                <div class="row">
-                    <div class="col-12">
-                        <p>Find Your Friends, Anywhere, Anytime</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-8 ml-auto">
-                <div class="row">
-                    <div class="col-12">
-                        <form class="m-1">
-                            <div class="form-row">
-                                <div class="form-group col-6 col-md-6">
-                                    <input id="txtEmail" type="email" class="form-control" placeholder="Email">
-                                </div>
-                                <div class="form-group col-6 col-md-6">
-                                    <input id="txtPassword" type="password" class="form-control" placeholder="Password">
-                                </div>
-                            </div>
-                            <button id="btnLogin" class="btn btn-primary">Login in</button>
-                            <button id="btnSignUp" class="btn btn-secondary">Sign Up</button>
-                            <button id="btnLogout" class="btn btn-success hide">Logout</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-12 m-1">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control searchResult" placeholder="Search Friend's Name" aria-label="Recipient's username"
-                        aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="submit" id="search-button"><i class="fa fa-search"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-8">
-                <h4 class="text-center">Map</h4>
-                <div id='map'></div>
-            </div>
-            <div id="friends-list" class="col-4">
-                <h4 class="text-center">Friends List</h4>
-            </div>
-        </div>
-    </div>
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" crossorigin="anonymous"></script>
-    <script src="assets/JS/main.js"></script>
+    <h1>Sign In To Your Account</h1>
+    <div id="firebaseui-auth-container"></div>
 </body>
-
 </html>
