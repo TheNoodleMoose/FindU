@@ -94,7 +94,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
             })
 
             map.on('load', function () {
-                map.loadImage('https://avatars0.githubusercontent.com/u/39680460?s=400&v=4', function (error, image) {
+                map.loadImage('https://cdn1.iconfinder.com/data/icons/social-messaging-ui-color/254000/67-512.png', function (error, image) {
                     if (error) throw error;
                     map.addImage('me', image);
                     map.addLayer({
