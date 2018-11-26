@@ -10,6 +10,7 @@ var config = {
     messagingSenderId: "761811179231"
 };
 firebase.initializeApp(config);
+const database = firebase.database();
 
 const txtEmail = document.getElementById('txtEmail');
 const txtPassword = document.getElementById('txtPassword');
@@ -17,7 +18,7 @@ const btnLogin = document.getElementById('btnLogin');
 const btnSignUp = document.getElementById('btnSignUp');
 const btnLogout = document.getElementById('btnLogout');
 
-$("#btnLogin").on("click", function(event) {
+$("#btnLogin").on("click", function (event) {
     event.preventDefault();
     //Get Email and pass
     const email = txtEmail.value;
@@ -25,11 +26,11 @@ $("#btnLogin").on("click", function(event) {
     const auth = firebase.auth();
     //Sign In
     const promise = auth.signInWithEmailAndPassword(
-        email,pass);
+        email, pass);
     promise.catch(e => console.log(e.message));
 });
 
-$("#btnSignUp").on("click", function(event) {
+$("#btnSignUp").on("click", function (event) {
     event.preventDefault();
     //CHECK FOR REAL EMAIL
     const email = txtEmail.value;
@@ -37,26 +38,61 @@ $("#btnSignUp").on("click", function(event) {
     const auth = firebase.auth();
     //Sign In
     const promise = auth.createUserWithEmailAndPassword(
-        email,pass);
-    promise.catch(e => console.log(e.message));
+        email, pass);
+    promise.then(function () {
+        firebase.database().ref('users/' + uid).push({
+            username: name,
+            email: email,
+        });
+    });
 });
 
-$("#btnLogout").on("click", function(event) {
+$("#btnLogout").on("click", function (event) {
     event.preventDefault();
     firebase.auth().signOut();
     document.location.href = 'index.html';
 })
 
 firebase.auth().onAuthStateChanged(firebaseUser => {
-    if(firebaseUser) {
+    if (firebaseUser) {
         console.log(firebaseUser)
         btnLogout.classList.remove('hide');
+
 
         navigator.geolocation.getCurrentPosition(function (position) {
             console.log(position.coords.longitude, position.coords.latitude);
             longitude = parseFloat(position.coords.longitude);
             latitude = parseFloat(position.coords.latitude);
-        
+
+            var user = firebase.auth().currentUser;
+            let name, email, uid;
+
+            if (user != null) {
+                name = user.displayName;
+                email = user.email;
+                uid = user.uid;
+            }
+            console.log(uid);
+            console.log(email);
+            console.log(name)
+
+            database.ref('users/' + uid).set({
+                name: name,
+                email: email,
+                uid: uid,
+                longitude: longitude,
+                latitude: latitude
+            });
+
+            // function locationUpdate(uid, longitude, latitude) {
+            //     var updates = {};
+            //     updates['users/' + uid] = longitude;
+            //     updates['users/' + uid] = latitude;
+
+            //     return firebase.database().ref('users/' + uid).update(updates);
+            // }
+            // locationUpdate();
+
             mapboxgl.accessToken = 'pk.eyJ1IjoidGhlbm9vZGxlbW9vc2UiLCJhIjoiY2pvdXM4c3ZrMWZnYTNrbW9ic2hmdjV6ZyJ9.-A735y9fU1TdsJ993uIKLA';
             var map = new mapboxgl.Map({
                 container: 'map', // container id
@@ -64,7 +100,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
                 center: [longitude, latitude], // starting position [lng, lat]
                 zoom: 13,
             })
-        
+
             map.on('load', function () {
                 map.loadImage('https://avatars0.githubusercontent.com/u/39680460?s=400&v=4', function (error, image) {
                     if (error) throw error;
