@@ -98,6 +98,8 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
                 .setHTML('<p>' + name + '</p>')
                 .addTo(map);
 
+            map.addControl(new mapboxgl.NavigationControl());
+
             map.on('load', function () {
                 map.loadImage('https://cdn1.iconfinder.com/data/icons/social-messaging-ui-color/254000/67-512.png', function (error, image) {
                     if (error) throw error;

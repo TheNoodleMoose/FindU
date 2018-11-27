@@ -33,6 +33,7 @@ body {
 
 .mapboxgl-popup-content{
     font-size: 12px;
+    font-weight: bold;
     width: 80px;
     height: 50px;
 }
