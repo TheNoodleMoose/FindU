@@ -94,6 +94,8 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
                     longitude: longitude,
                     latitude: latitude
                 });
+                console.log(longitude);
+                console.log(latitude);
             })
 
 
