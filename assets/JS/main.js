@@ -115,6 +115,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 
             var popup = new mapboxgl.Popup({ closeOnClick: false })
                 .setLngLat([longitude, latitude])
+                .setHTML("")
                 .setHTML('<p>' + name + '</p>')
                 .addTo(map);
 
