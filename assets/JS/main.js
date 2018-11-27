@@ -91,6 +91,27 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
                 center: [longitude, latitude], // starting position [lng, lat]
                 zoom: 13,
             })
+            database.ref('users/' + uid).on("value", function (snapshot) {
+                var userLocationLongitude = snapshot.val().longitude;
+                var userLocationLatitude = snapshot.val().latitude;
+                var userName = snapshot.val().name;
+                console.log(userName + " Has Changed Their Location: " + userLocationLongitude + " " + userLocationLatitude);
+            });
+
+            let updateUserLocation =
+                database.ref('users/').on("value", function (snapshot) {
+                    snapshot.forEach(function (childsnap) {
+                        childsnap.val().name
+                        console.log(childsnap.val().name)
+                        console.log(snapshot)
+                        console.log(childsnap)
+
+                        var popup = new mapboxgl.Popup({ closeOnClick: false })
+                            .setLngLat([childsnap.val().longitude, childsnap.val().latitude])
+                            .setHTML('<p>' + childsnap.val().name + '</p>')
+                            .addTo(map);
+                    })
+                })
 
             var popup = new mapboxgl.Popup({ closeOnClick: false })
                 .setLngLat([longitude, latitude])
