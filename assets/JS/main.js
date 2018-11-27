@@ -84,6 +84,18 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
                 latitude: latitude
             });
 
+            $("#btnCheckIn").on("click", function(event) {
+                event.preventDefault();
+                
+                database.ref('users/' + uid).set({
+                    name: name,
+                    email: email,
+                    uid: uid,
+                    longitude: longitude,
+                    latitude: latitude
+                });
+            })
+
 
             mapboxgl.accessToken = 'pk.eyJ1IjoidGhlbm9vZGxlbW9vc2UiLCJhIjoiY2pvdXM4c3ZrMWZnYTNrbW9ic2hmdjV6ZyJ9.-A735y9fU1TdsJ993uIKLA';
             var map = new mapboxgl.Map({
