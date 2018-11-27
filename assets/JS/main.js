@@ -58,8 +58,8 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         console.log(firebaseUser)
         btnLogout.classList.remove('hide');
 
-
-        navigator.geolocation.watchPosition(function (position) {
+        //Changed to watchPosition for improved Accuracy
+        navigator.geolocation.getCurrentPosition(function (position) {
             console.log(position.coords.longitude, position.coords.latitude);
             longitude = parseFloat(position.coords.longitude);
             latitude = parseFloat(position.coords.latitude);
