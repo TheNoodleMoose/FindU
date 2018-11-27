@@ -59,7 +59,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         btnLogout.classList.remove('hide');
 
 
-        navigator.geolocation.getCurrentPosition(function (position) {
+        navigator.geolocation.watchPosition(function (position) {
             console.log(position.coords.longitude, position.coords.latitude);
             longitude = parseFloat(position.coords.longitude);
             latitude = parseFloat(position.coords.latitude);
@@ -84,7 +84,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
                 latitude: latitude
             });
 
-            $("#btnCheckIn").on("click", function(event) {
+            $("#btnCheckIn").on("click", function (event) {
                 event.preventDefault();
                 console.log("Checked In")
                 database.ref('users/' + uid).set({
