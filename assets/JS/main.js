@@ -86,7 +86,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 
             $("#btnCheckIn").on("click", function(event) {
                 event.preventDefault();
-                
+                console.log("Checked In")
                 database.ref('users/' + uid).set({
                     name: name,
                     email: email,
