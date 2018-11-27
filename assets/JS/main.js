@@ -93,6 +93,11 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
                 zoom: 13,
             })
 
+            var popup = new mapboxgl.Popup({ closeOnClick: false })
+                .setLngLat([longitude, latitude])
+                .setHTML('<p>' + name + '</p>')
+                .addTo(map);
+
             map.on('load', function () {
                 map.loadImage('https://cdn1.iconfinder.com/data/icons/social-messaging-ui-color/254000/67-512.png', function (error, image) {
                     if (error) throw error;
