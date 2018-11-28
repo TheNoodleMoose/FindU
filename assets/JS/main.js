@@ -111,18 +111,16 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
                             .setHTML('<p>' + childsnap.val().name + '</p>')
                             .addTo(map);    
 
-
-                            // only change since last push
-                        var marker = new mapboxgl.Marker()
+                            var marker = new mapboxgl.Marker()
                             .setLngLat([childsnap.val().longitude, childsnap.val().latitude])
                             .addTo(map)
-
+                            
                     })
                 })
 
         //  Users popup box with their user name
 
-            var popup = new mapboxgl.Popup({ closeOnClick: false })
+            var popup = new mapboxgl.Popup({ closeOnClick: false, closeButton: false })
                 .setLngLat([longitude, latitude])
                 .setHTML("")
                 .setHTML('<p>' + name + '</p>')
