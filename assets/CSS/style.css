@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One');    
     /* Global */
 /*<=============>*/
 body {
     color: #092834;
     background: #1A3E4C;
+    font-family: 'Fredoka One', cursive;
 }
 /* This is used to hide the logout button when no one is logged in */
 .hide {
@@ -20,6 +22,7 @@ body {
     padding-right: 30px;
     background: #67AFCB;
     border-radius: 10px;
+    text-shadow: 0px 2px 2px #1A3E4C;
 }
 /* This styles the acutal map */
 #map {
@@ -36,4 +39,19 @@ body {
     font-weight: bold;
     width: 137px;
     height: 45px;
+}
+
+.signInHeader {
+    text-align: center;
+    color: #67AFCB;
+    text-shadow: 2px 2px #092834;
+}
+
+#loginPage {
+    width: 100%;
+    height: 560px;
+    border-radius: 10px;
+    background-image: url('../images/pexels-photo-346696.jpeg');
+    background-color: rgba(0, 0, 0, .5);
+    background-blend-mode: multiply;
 }
