@@ -1,9 +1,18 @@
-
+    /* Global */
+/*<=============>*/
 body {
     color: #092834;
     background: #1A3E4C;
 }
+/* This is used to hide the logout button when no one is logged in */
+.hide {
+    display: none;
+}
 
+    /* Map */
+/*<==========>*/
+
+/* This styles the whole container */
 .map-box {
     height: auto;
     margin: 0 auto;
@@ -12,11 +21,7 @@ body {
     background: #67AFCB;
     border-radius: 10px;
 }
-
-.hide {
-    display: none;
-}
-
+/* This styles the acutal map */
 #map {
     border-radius: 10px;
     width: auto;
@@ -25,25 +30,10 @@ body {
     margin-bottom: 10px;
 }
 
-#friends-list {
-    background: rgba(26, 62, 76, 0.616);
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-#btnCheckIn {
-    margin-bottom: 10px;
-}
-
+/* This styles the popup box for users */
 .mapboxgl-popup-content{
     font-size: 12px;
     font-weight: bold;
     width: 137px;
     height: 45px;
-}
-
-@media screen and (min-width: 768px) and (max-width: 900px) {
-    body {
-        background: black;
-    }
 }
