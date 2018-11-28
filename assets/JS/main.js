@@ -113,13 +113,35 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
                     })
                 })
 
+        //  Users popup box with their user name
+
             var popup = new mapboxgl.Popup({ closeOnClick: false })
                 .setLngLat([longitude, latitude])
                 .setHTML("")
                 .setHTML('<p>' + name + '</p>')
                 .addTo(map);
 
+        // zoom in and out buttons
+
             map.addControl(new mapboxgl.NavigationControl());
+
+        // recenters camera on users icon
+
+            map.on('click', 'points', function (e) {
+                map.flyTo({center: e.features[0].geometry.coordinates, zoom: 13});
+            });
+
+        // changes mouse cursor to when its on top a clickable element
+
+            map.on('mouseenter', 'points', function () {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+        
+        // chages mouse cursor back to defualt when it leaves clickable elements area
+
+            map.on('mouseleave', 'points', function () {
+                map.getCanvas().style.cursor = '';
+             });
 
             map.on('load', function () {
                 map.loadImage('https://cdn1.iconfinder.com/data/icons/social-messaging-ui-color/254000/67-512.png', function (error, image) {
