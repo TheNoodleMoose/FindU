@@ -6,6 +6,11 @@ body {
     background: #555B6E;
     font-family: 'Fredoka One', cursive;
 }
+
+li {
+    color: #555B6E;
+    text-shadow: none;
+}
 /* This is used to hide the logout button when no one is logged in */
 .hide {
     display: none;
@@ -66,4 +71,8 @@ body {
     background-image: url('../images/pexels-photo-346696.jpeg');
     background-color: rgba(0, 0, 0, .5);
     background-blend-mode: multiply;
+}
+
+#onlineList {
+    background: #8DAA91;
 }
