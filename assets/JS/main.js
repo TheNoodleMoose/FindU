@@ -94,7 +94,6 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 
                     })
                 })
-
             
             // This creates a popup specifically for the user logged in
             var popup = new mapboxgl.Popup({ closeOnClick: false, closeButton: false })
@@ -157,6 +156,40 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 });
 
 
+let checkIfOnline =
+                database.ref('users/').on("value", function(snapshot) {
+                    var uid = firebase.auth().currentUser.uid;
+                    var userName = firebase.auth().currentUser.displayName
+                    snapshot.forEach(function(childsnap) {
+                        var userStatusDatabaseRef = firebase.database().ref('/status/' + uid);
 
+                        var isOfflineForDatabase = {
+                            state: 'offline',
+                            last_changed: firebase.database.ServerValue.TIMESTAMP,
+                        };
+
+                        var isOnlineForDatabase = {
+                            state: 'online',
+                            last_changed: firebase.database.ServerValue.TIMESTAMP,
+                        };
+
+                        firebase.database().ref('.info/connected').on('value', function(snapshot) {
+                            // If we're not currently connected, don't do anything.
+                            if (snapshot.val() == false) {
+                                return;
+                            } 
+                        
+                            // If we are currently connected, then use the 'onDisconnect()' 
+                            // method to add a set which will only trigger once this 
+                            // client has disconnected by closing the app, 
+                            // losing internet, or any other means.
+                            userStatusDatabaseRef.onDisconnect().set(isOfflineForDatabase).then(function() {
+                                
+                                userStatusDatabaseRef.set(isOnlineForDatabase);
+                            });
+                        })
+                    })
+                })
+            
 
 
