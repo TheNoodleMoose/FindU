@@ -160,6 +160,13 @@ let checkIfOnline =
                 database.ref('users/').on("value", function(snapshot) {
                     var uid = firebase.auth().currentUser.uid;
                     var userName = firebase.auth().currentUser.displayName
+                    
+                    var list = $("<li>")
+                                list.text(userName);
+                                $("#usersOnline").prepend(list);
+                                console.log(list)
+                    console.log(userName + " is online")
+                    
                     snapshot.forEach(function(childsnap) {
                         var userStatusDatabaseRef = firebase.database().ref('/status/' + uid);
 
@@ -177,7 +184,8 @@ let checkIfOnline =
                             // If we're not currently connected, don't do anything.
                             if (snapshot.val() == false) {
                                 return;
-                            } 
+                            }
+                            
                         
                             // If we are currently connected, then use the 'onDisconnect()' 
                             // method to add a set which will only trigger once this 
@@ -186,10 +194,12 @@ let checkIfOnline =
                             userStatusDatabaseRef.onDisconnect().set(isOfflineForDatabase).then(function() {
                                 
                                 userStatusDatabaseRef.set(isOnlineForDatabase);
+
+                                
                             });
                         })
                     })
                 })
-            
+
 
 
