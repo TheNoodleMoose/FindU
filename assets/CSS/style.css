@@ -40,6 +40,7 @@ body {
     width: 137px;
     height: 45px;
     color: #555B6E;
+    text-shadow: none;
 }
 
 .signInHeader {
