@@ -21,6 +21,7 @@ $("#btnLogout").on("click", function (event) {
     event.preventDefault();
     var user = firebase.auth().currentUser;
     let uid = user.uid;
+    updateOnlineUsers();
 
     // If the user actually exist than do something
 
@@ -36,6 +37,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
         console.log(firebaseUser)
         btnLogout.classList.remove('hide');
+        updateOnlineUsers();
 
         //Changed to watchPosition for improved Accuracy
         // This is continually watching the signed in users position and updating
@@ -84,13 +86,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
             });
 
             database.ref('usersOnline/' + uid).set(name)
-            let updateOnlineUsers =
-                database.ref('usersOnline/').on("value", function (snapshot) {
-                    snapshot.forEach(function (childsnap) {
-                        childsnap.val().name
-                        console.log(childsnap.val().name)
-                    })
-                })
+
             // This function is how we grab the information from firebase to mark other users on
             // the map and make popups with their names
             let updateUserLocation =
@@ -111,7 +107,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 
                     })
                 })
-            
+
             // This creates a popup specifically for the user logged in
             var popup = new mapboxgl.Popup({ closeOnClick: false, closeButton: false })
                 .setLngLat([longitude, latitude])
@@ -192,6 +188,7 @@ let checkIfOnline =
             firebase.database().ref('.info/connected').on('value', function (snapshot) {
                 // If we're not currently connected, don't do anything.
                 if (snapshot.val() == false) {
+                    updateOnlineUsers();
                     return;
                 }
 
@@ -206,6 +203,19 @@ let checkIfOnline =
             })
         })
     })
+
+let updateOnlineUsers = function() {
+    
+    database.ref('usersOnline/').on("value", function (snapshot) {
+        $("#usersOnline").html("");
+        snapshot.forEach(function (childsnap) {
+            childsnap.val()
+            var list = $("<li>");
+            list.text(childsnap.val());
+            $("#usersOnline").prepend(list);
+        })
+    })
+}
 
 
 
