@@ -163,6 +163,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
             });
         });
     } else {
+        updateOnlineUsers();
         console.log('not logged in');
         btnLogout.classList.add('hide');
     }
