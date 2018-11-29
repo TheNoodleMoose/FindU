@@ -19,8 +19,16 @@ const database = firebase.database();
 // This logs the user out when the click the logout button
 $("#btnLogout").on("click", function (event) {
     event.preventDefault();
+    var user = firebase.auth().currentUser;
+    let uid = user.uid;
+
+    // If the user actually exist than do something
+
+    database.ref('usersOnline/' + uid).remove();
     firebase.auth().signOut();
     document.location.href = 'index.html';
+
+
 })
 
 // When a user signs in, if they are actually a user than grab their location
@@ -74,6 +82,15 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
                 var userName = snapshot.val().name;
                 console.log(userName + " Has Changed Their Location: " + userLocationLongitude + " " + userLocationLatitude);
             });
+
+            database.ref('usersOnline/' + uid).set(name)
+            let updateOnlineUsers =
+                database.ref('usersOnline/').on("value", function (snapshot) {
+                    snapshot.forEach(function (childsnap) {
+                        childsnap.val().name
+                        console.log(childsnap.val().name)
+                    })
+                })
             // This function is how we grab the information from firebase to mark other users on
             // the map and make popups with their names
             let updateUserLocation =
@@ -155,41 +172,41 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
     }
 });
 
-
 let checkIfOnline =
-                database.ref('users/').on("value", function(snapshot) {
-                    var uid = firebase.auth().currentUser.uid;
-                    var userName = firebase.auth().currentUser.displayName
-                    snapshot.forEach(function(childsnap) {
-                        var userStatusDatabaseRef = firebase.database().ref('/status/' + uid);
+    database.ref('users/').on("value", function (snapshot) {
+        var uid = firebase.auth().currentUser.uid;
+        var userName = firebase.auth().currentUser.displayName
+        snapshot.forEach(function (childsnap) {
+            var userStatusDatabaseRef = firebase.database().ref('/status/' + uid);
 
-                        var isOfflineForDatabase = {
-                            state: 'offline',
-                            last_changed: firebase.database.ServerValue.TIMESTAMP,
-                        };
+            var isOfflineForDatabase = {
+                state: 'offline',
+                last_changed: firebase.database.ServerValue.TIMESTAMP,
+            };
 
-                        var isOnlineForDatabase = {
-                            state: 'online',
-                            last_changed: firebase.database.ServerValue.TIMESTAMP,
-                        };
+            var isOnlineForDatabase = {
+                state: 'online',
+                last_changed: firebase.database.ServerValue.TIMESTAMP,
+            };
 
-                        firebase.database().ref('.info/connected').on('value', function(snapshot) {
-                            // If we're not currently connected, don't do anything.
-                            if (snapshot.val() == false) {
-                                return;
-                            } 
-                        
-                            // If we are currently connected, then use the 'onDisconnect()' 
-                            // method to add a set which will only trigger once this 
-                            // client has disconnected by closing the app, 
-                            // losing internet, or any other means.
-                            userStatusDatabaseRef.onDisconnect().set(isOfflineForDatabase).then(function() {
-                                
-                                userStatusDatabaseRef.set(isOnlineForDatabase);
-                            });
-                        })
-                    })
-                })
-            
+            firebase.database().ref('.info/connected').on('value', function (snapshot) {
+                // If we're not currently connected, don't do anything.
+                if (snapshot.val() == false) {
+                    return;
+                }
+
+                // If we are currently connected, then use the 'onDisconnect()' 
+                // method to add a set which will only trigger once this 
+                // client has disconnected by closing the app, 
+                // losing internet, or any other means.
+                userStatusDatabaseRef.onDisconnect().set(isOfflineForDatabase).then(function () {
+
+                    userStatusDatabaseRef.set(isOnlineForDatabase);
+                });
+            })
+        })
+    })
+
+
 
 
