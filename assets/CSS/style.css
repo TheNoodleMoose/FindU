@@ -2,8 +2,8 @@
     /* Global */
 /*<=============>*/
 body {
-    color: #092834;
-    background: #1A3E4C;
+    color: #EBF5DF;
+    background: #555B6E;
     font-family: 'Fredoka One', cursive;
 }
 /* This is used to hide the logout button when no one is logged in */
@@ -20,7 +20,7 @@ body {
     margin: 0 auto;
     padding-top: 10px;
     padding-right: 30px;
-    background: #67AFCB;
+    background:#8DAA91;
     border-radius: 10px;
     text-shadow: 0px 2px 2px #1A3E4C;
 }
@@ -39,12 +39,23 @@ body {
     font-weight: bold;
     width: 137px;
     height: 45px;
+    color: #555B6E;
 }
 
 .signInHeader {
     text-align: center;
     color: #67AFCB;
     text-shadow: 2px 2px #092834;
+}
+
+#btnLogout {
+    background: #FED766;
+    color: #555B6E;
+}
+
+#btnLogout:hover {
+    background: #FE4A49;
+    color: #EBF5DF;
 }
 
 #loginPage {
