@@ -1,5 +1,5 @@
 # FindU
-## Welcome To The Readme For FindU, a site that will change the way you meet up with friends!
+### Welcome To The Readme For FindU, a site that will change the way you meet up with friends!
 
 # The Vision of FindU
 We created FindU with the hopes to make locating and hanging out with friends simpler and accessible to all. Whether you just want to see where someone is at, to contacting them to go out for lunch, FindU is the solution to these common, everyday problems. FindU is a work of passion and is still in development!
