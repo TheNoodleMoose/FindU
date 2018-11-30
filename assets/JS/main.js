@@ -95,14 +95,12 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
                     // Then for each child in snapshot(each user) grab a snapshot of those users
                     snapshot.forEach(function (childsnap) {
                         childsnap.val().name
-                        // For each child in users, create a popup with their name
-                        var popup = new mapboxgl.Popup({ closeOnClick: false })
-                            .setLngLat([childsnap.val().longitude, childsnap.val().latitude])
-                            .setHTML('<p>' + childsnap.val().name + '</p>')
-                            .addTo(map);
+                        
                         // For each child in users, create a marker at their location
                         var marker = new mapboxgl.Marker()
                             .setLngLat([childsnap.val().longitude, childsnap.val().latitude])
+                            .setPopup(new mapboxgl.Popup({ closeOnClick: false, offset: 25})
+                                .setHTML('<p>' + childsnap.val().name + '</p>'))
                             .addTo(map)
 
                     })
