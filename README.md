@@ -25,22 +25,27 @@ This part is very important. Be sure once the popup deploys asking for your loca
 
 ### Here's our map
 Once the page has permission to grab your location, our mapbox map will load with you and other users on the map! Your marker/current position is marked by the red marker, while other users are the blue ones. So see a users name, simply click on their marker and their display name will popup!
+
 ![This is the map](assets/images/The-Map.PNG)
 
 ### Zooming feature
 To zoom in and out on the map we have enabled the zoom tool on the side of the map. If you are mobile you can use your fingers to zoom in and out as well.
+
 ![The zoom buttons](assets/images/Zoom.PNG)
 
 ### User ID
 After clicking on someones marker, their display name will appear like this.
+
 ![The popup that has the users display](assets/images/User-icon.PNG)
 
 ### Who's online
 Right here is our coolest feature right now. We take user info from our database and list all the current users who are online. As of right now (11/29/2018) it will show everyone who is online. We will add a freinds list to filter down who you want to see in the near future.
+
 ![Our card that gives a list of who is current online](assets/images/Whos-Online.PNG)
 
 ### Logout
 When you no longer need to use the map, just press logout and your display name will be taken off the Who's Online list.
+
 ![The logout button](assets/images/logout.PNG)
 
 ### Future Plans
