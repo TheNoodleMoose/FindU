@@ -219,6 +219,33 @@ let updateOnlineUsers = function() {
 }
 
 setInterval(function() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        console.log(position.coords.longitude, position.coords.latitude);
+        longitude = parseFloat(position.coords.longitude);
+        latitude = parseFloat(position.coords.latitude);
+
+        // This var holds the information for the current user signed
+        var user = firebase.auth().currentUser;
+        let name, email, uid;
+
+        // If the user actually exist than do something
+        if (user != null) {
+            name = user.displayName;
+            email = user.email;
+            uid = user.uid;
+        }
+        console.log(uid);
+        console.log(email);
+        console.log(name)
+        // When they sign in, set their information in the databse to their name,email,uid,
+        // longitude, and latitude. The only thing updated after the first sign in is their location
+        database.ref('users/' + uid).set({
+            name: name,
+            email: email,
+            uid: uid,
+            longitude: longitude,
+            latitude: latitude
+        });
     location.reload();    
 }, 60000)
 
