@@ -32,6 +32,11 @@ $("#btnLogout").on("click", function (event) {
 
 })
 
+$("#btnCheckIn").on("click", function(event) {
+    event.preventDefault();
+    checkIn();
+})
+
 // When a user signs in, if they are actually a user than grab their location
 firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
@@ -41,7 +46,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 
         //Changed to watchPosition for improved Accuracy
         // This is continually watching the signed in users position and updating
-        navigator.geolocation.watchPosition(function (position) {
+        navigator.geolocation.getCurrentPosition(function (position) {
             console.log(position.coords.longitude, position.coords.latitude);
             longitude = parseFloat(position.coords.longitude);
             latitude = parseFloat(position.coords.latitude);
@@ -216,6 +221,32 @@ let updateOnlineUsers = function() {
     })
 }
 
+let checkIn = function() {
+    var user = firebase.auth().currentUser;
+    let name, email, uid;
+
+    if (user != null) {
+        name = user.displayName;
+        email = user.email;
+        uid = user.uid;
+    }
+    navigator.geolocation.getCurrentPosition(function (position) {
+        console.log(position.coords.longitude, position.coords.latitude);
+        longitude = parseFloat(position.coords.longitude);
+        latitude = parseFloat(position.coords.latitude);
+
+        
+    })
+
+    database.ref('users/' + uid).set({
+        name: name,
+        email: email,
+        uid: uid,
+        longitude: longitude,
+        latitude: latitude
+    });
+    
+}
 
 
 
