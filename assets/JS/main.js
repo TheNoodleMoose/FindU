@@ -245,7 +245,7 @@ let checkIn = function() {
         longitude: longitude,
         latitude: latitude
     });
-    
+    location.reload();
 }
 
 
