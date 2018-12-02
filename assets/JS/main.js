@@ -44,6 +44,9 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         btnLogout.classList.remove('hide');
         updateOnlineUsers();
 
+        setInterval(function() {
+            btnCheckIn.classList.remove('hide')
+        }, 60000)
         //Changed to watchPosition for improved Accuracy
         // This is continually watching the signed in users position and updating
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -88,7 +91,9 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
                 var userLocationLatitude = snapshot.val().latitude;
                 var userName = snapshot.val().name;
                 console.log(userName + " Has Changed Their Location: " + userLocationLongitude + " " + userLocationLatitude);
+                
             });
+            
 
             database.ref('usersOnline/' + uid).set(name)
 
@@ -107,7 +112,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
                             .setPopup(new mapboxgl.Popup({ closeOnClick: false, offset: 25})
                                 .setHTML('<p>' + childsnap.val().name + '</p>'))
                             .addTo(map)
-
+                        
                     })
                 })
 
@@ -222,6 +227,7 @@ let updateOnlineUsers = function() {
 }
 
 let checkIn = function() {
+    btnCheckIn.classList.add('hide')
     var user = firebase.auth().currentUser;
     let name, email, uid;
 
@@ -245,6 +251,7 @@ let checkIn = function() {
         longitude: longitude,
         latitude: latitude
     });
+    
     location.reload();
 }
 
