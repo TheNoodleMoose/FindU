@@ -1,8 +1,8 @@
-# FindU
-### Welcome To The Readme For FindU, a site that will change the way you meet up with friends!
+# Mark Me
+### Welcome To The Readme For Mark Me, a site that will change the way you meet up with friends!
 
-# The Vision of FindU
-We created FindU with the hopes to make locating and hanging out with friends simpler and accessible to all. Whether you just want to see where someone is at, to contacting them to go out for lunch, FindU is the solution to these common, everyday problems. FindU is a work of passion and is still in development!
+# The Vision of Mark Me
+We created Mark Me with the hopes to make locating and hanging out with friends simpler and accessible to all. Whether you just want to see where someone is at, to contacting them to go out for lunch, Mark Me is the solution to these common, everyday problems. Mark Me is a work of passion and is still in development!
 
 ### Starting step
 When the pages loads up, you will be greeted with a screen to sign in. You can either sign up with a gmail account, or create a new account using email and password.
@@ -49,7 +49,7 @@ When you no longer need to use the map, just press logout and your display name 
 ![The logout button](assets/images/logout.PNG)
 
 ### Future Plans
-FindU is a work in progress. We intend to continue development on it to create a something amazing one day. We hope to one day come up with a better name, aswell as add friends list and friending system and a active chat system. 
+Mark Me is a work in progress. We intend to continue development on it to create a something amazing one day. We hope to one day come up with a better name, aswell as add friends list and friending system and a active chat system. 
 
-## Thank You For Checking Out FindU!
+## Thank You For Checking Out Mark Me!
 
