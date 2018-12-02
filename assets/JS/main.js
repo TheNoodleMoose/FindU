@@ -95,11 +95,11 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
                     // Then for each child in snapshot(each user) grab a snapshot of those users
                     snapshot.forEach(function (childsnap) {
                         childsnap.val().name
-                        
+
                         // For each child in users, create a marker at their location
                         var marker = new mapboxgl.Marker()
                             .setLngLat([childsnap.val().longitude, childsnap.val().latitude])
-                            .setPopup(new mapboxgl.Popup({ closeOnClick: false, offset: 25})
+                            .setPopup(new mapboxgl.Popup({ closeOnClick: false, offset: 25 })
                                 .setHTML('<p>' + childsnap.val().name + '</p>'))
                             .addTo(map)
 
@@ -166,7 +166,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         btnLogout.classList.add('hide');
     }
 
-    
+
 });
 
 let checkIfOnline =
@@ -205,8 +205,8 @@ let checkIfOnline =
         })
     })
 
-let updateOnlineUsers = function() {
-    
+let updateOnlineUsers = function () {
+
     database.ref('usersOnline/').on("value", function (snapshot) {
         $("#usersOnline").html("");
         snapshot.forEach(function (childsnap) {
@@ -218,7 +218,7 @@ let updateOnlineUsers = function() {
     })
 }
 
-setInterval(function() {
+setInterval(function () {
     navigator.geolocation.getCurrentPosition(function (position) {
         console.log(position.coords.longitude, position.coords.latitude);
         longitude = parseFloat(position.coords.longitude);
@@ -246,7 +246,7 @@ setInterval(function() {
             longitude: longitude,
             latitude: latitude
         });
-    location.reload();    
-}, 60000)
-
+        location.reload();
+    }, 60000)
+});
 
